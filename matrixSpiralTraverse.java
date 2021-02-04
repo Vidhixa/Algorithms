@@ -11,12 +11,15 @@ class Solution {
         List<Integer> result = new ArrayList<>();
         
         while(top <= bottom || left <= right) {
-            
-            goRight(left, right, top, matrix, result);
-            top = top + 1;
+            if(top <= bottom) {
+              goRight(left, right, top, matrix, result);
+              top = top + 1;
+            }
 
-            goDown(right, top, bottom, matrix, result);
-            right = right - 1;
+            if(left <= right) {
+             goDown(right, top, bottom, matrix, result);
+             right = right - 1;
+            }
             
             if(top <= bottom) {
                 goLeft(bottom, right, left, matrix, result);
@@ -27,7 +30,6 @@ class Solution {
                 goUp(left, top, bottom, matrix, result);
                 left = left + 1;
             }
-            
             
             //System.out.println(left + " " + right + " " + top + " " + bottom);
         }
@@ -70,4 +72,7 @@ class Solution {
         }
     }
 }
+
+
+//00 01 02 03 | 13 23 | 22 21 20 | 10 11 12 
    
