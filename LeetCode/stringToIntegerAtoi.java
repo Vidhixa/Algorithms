@@ -18,7 +18,7 @@ class Solution {
             if(trimmedString.charAt(0) == '-' || trimmedString.charAt(0) == '+') {
                //Run some assignments
                 operationSign = operationSign + trimmedString.charAt(0);
-                System.out.println("Sign is " + operationSign);
+                //System.out.println("Sign is " + operationSign);
                 ++current;
             } else {
                 return 0;
