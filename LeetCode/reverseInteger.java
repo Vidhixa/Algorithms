@@ -13,30 +13,37 @@ class Solution {
             System.out.println("X is after * -1 " + x);
         }*/
         
-        int result = 0;
+        long result = 0;
         int mod = 0;
 
         while(x != 0) {
             mod = x % 10;
             // Mod of 0 % 10 will also render right result
             result = (result * 10) + mod;
-            //System.out.println(result);
+            System.out.println(result);
             x = x/10; 
             
+            // Instead of lenghty code below, we can simplify by making result long and direct comparing if it goes over the int maxes of not
+            if((result > Integer.MAX_VALUE && !isNegative) ||
+               (result < Integer.MIN_VALUE && isNegative)) {
+                   return 0;
+                
+            }
+
             // We want to use absolute in the comparison to keep things fair for -ve and +ve numbers
             // Correctly remember that max and min values are MAX_VALUE and MIN_VALUE
-            if(Math.abs(result) > Integer.MAX_VALUE/10 && x != 0) {
-                result = 0;
-                break;
-            }
+            //if(Math.abs(result) > Integer.MAX_VALUE/10 && x != 0) {
+            //    result = 0;
+            //    break;
+            //}
             
-            if(Math.abs(result) == Integer.MAX_VALUE/10 && ((isNegative && (x % 10) > 8) || (!isNegative && (x % 10) > 7))) {
-                result = 0;
-                break;
-            }
+            //if(Math.abs(result) == Integer.MAX_VALUE/10 && ((isNegative && (x % 10) > 8) || (!isNegative && (x % 10) > 7)))             //{
+            //    result = 0;
+            //    break;
+            //}
         }
         
-        //System.out.println("Result " + result);
-        return result;
+        System.out.println("Result " + result);
+        return (int)result;
     }
 }
