@@ -1,54 +1,25 @@
 class Solution {
     public void merge(int[] nums1, int m, int[] nums2, int n) {
-        // Edge case where only one array is given
-        if(m == 0) {
-            for(int j=0; j<n; j++) {
-                nums1[j] = nums2[j];
-            }
-            System.out.println("Comes here");
-            return;
-        }    
-        if(n == 0)
-            return;
+        int last = m+n-1;
+        int p1 = m-1;
+        int p2 = n-1;
         
-        int i = m+n-1;
-        int pointerOne = m-1;
-        int pointerTwo = n-1;
         // Rest of the cases; We start filling arrray backwards
-        while(i>=0 && pointerOne>=0 && pointerTwo>=0) {
-            if(nums1[pointerOne] > nums2[pointerTwo]) {
-                nums1[i] = nums1[pointerOne];
-                pointerOne -= 1;
-                i -= 1;
+        for(int i=last; i>=0; i--) {
+            // The below conditio takes care of 2 things
+            // 1. if nums2 is size 0 then nothing to process
+            // 2. if p2 reduces to negative then all that's left is nums1 which is in it's right array anyways
+            if(p2 < 0)
+                break;
+            
+            // Now check the greater than condition while we have nums2 and assign accordingly
+            // Notice the optimization to make p1-- inline instead of a new line
+            if(p1 >=0 && nums1[p1] > nums2[p2]) {
+                nums1[i] = nums1[p1--];
             } else {
-                nums1[i] = nums2[pointerTwo];
-                pointerTwo -= 1;
-                i -= 1;
+                nums1[i] = nums2[p2--];
             }
         }
-    
-        // There might be leftover values, do not forget them
-        if(pointerOne >= 0) {
-            while(i>=0 && pointerOne>=0) {
-                nums1[i] = nums1[pointerOne];
-                pointerOne -= 1;
-                i -= 1;
-            }
-        }
-        if(pointerTwo >= 0) {
-            while(i>=0 && pointerTwo>=0) {
-                nums1[i] = nums2[pointerTwo];
-                pointerTwo -= 1;
-                i -= 1;
-            }
-        }
+
     }
-    
-    //[2,0] [1] 1 1 i=1,p1=0,p2=0
-    // True -> 2>1 T -> nums1[1]=2 -> i=0,p1=-1,p2=0
-    
-    // [1, 2, 3, 0, 0, 0]
-    // i=3+3-1=5, p1=2, p2=2
-    // 1st iteration: num1[2] is 3, nums2[2] is 6; nums1[5]=6
-    // 2nd iteration: num1[2] is 3, nums2[1] is 5; nums1[4]=5
 }
