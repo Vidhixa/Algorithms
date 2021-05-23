@@ -1,3 +1,7 @@
+/*
+Write a function that finds anyone who badged into the room three or more times in a one-hour period.
+*/
+
 import java.io.*;
 import java.util.*;
 
